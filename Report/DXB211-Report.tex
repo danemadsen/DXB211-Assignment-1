@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{QUT.jpg}\\
+			[0.03\textheight]  
+			\Large\textbf{Bachelor of IT (Computer Science)}\\
+			\Large\textbf{Assignment 1 - Programming Sketchbook}\\
+			\large\textbf{DXB211 - Creative Coding}\\
+			[0.02\textheight]
+			\large\textsl{Dane Madsen}\\
+			\large\textsl{n10983864@qut.edu.au}
+		\end{center}
+		
+	\end{titlepage}
+
+	\section{Creative Process}
+		\subsection{Active Drawing}
+			The initial inspiration for this sketch came from halfbrick studios' Fruit Ninja.
+			I also played around with a number of other concepts such as a snake game, an airport 
+			manager game and a tower defense game. Ultimately I decided to go with a fruit ninja 
+			game because it was the simplest to implement and A lot of the elements of the other 
+			concepts were too far out of scope for this assignment.\\\\Initially with the knife 
+			swipe mechanic I had a lot of trouble getting the swipe to work properly because the 
+			method I was using to limit the line length was not working as intended and the swipe 
+			would get cut off prematurely. I ended up changing the method to use cull lines after 
+			25 draw cycles and this worked much better.\\\\I also encountered trouble working out 
+			how to actually move the 'fruits' and how to detect collisions with the fruits. However, 
+			I was able to solve both of these issues by researching online.
+		
+		\subsection{Recombination Effect}
+			For this second sketch I initially had the idea that I would have a pixilated image which 
+			I could draw over to reduce the pixilation 
+
+		\subsection{Moveable Types}
+	
+	\section{Statement of Completeness}
+		Assignment submission is complete. Application fulfils all required functionality. 
+		The fire alarm system attempts to follows NASA The power of 10, ISO 26262-6:2018
+		and MISRA C to a standard practical for the assessment.
+	
+	\section{Fire Alarm Safety Assessment}
+		\subsection{Safety-critical standards provided fire alarm fails}
+			\subsubsection{NASA the power of 10}
+				\begin{enumerate}
+					\item\textbf{Avoid complex flow constructs, such as goto and recursion.}\\Fail – firealarm.c uses goto on line 159 and deletenodes() is a recursive function.
+					\item\textbf{All loops must have fixed bounds. This prevents runaway code.}\\Fail – firealarm.c uses unbound loops on lines 61, 134, 157 and 189.
+					\item\textbf{Avoid heap memory allocation.}\\Fail – firealarm.c uses malloc on lines 67, 82, 91, 152 and 176.
+					\item\textbf{Restrict functions to a single printed page.}\\Fail – functions tempmonitor() on line 56, and main() on line 147 go well over one page.
+					\item\textbf{}
+				\end{enumerate}
+
+\end{document}

@@ -9,8 +9,6 @@ let fruitCounter = 0;
 const canvas = createCanvas(1000, 1000);
 
 function setup() {
-  canvas.style('display', 'block'); // Set canvas display style to block to remove margins
-
   startButton = createButton('Start');
   startButton.size(100, 50);
   startButton.position(canvas.width / 2 - startButton.width / 2, canvas.height / 2 - startButton.height / 2);
@@ -19,12 +17,10 @@ function setup() {
 
 function draw() {
   background('#001000');
-  push();
   fill('#FFFFFF');
   textSize(32);
   textAlign(CENTER, TOP);
   text(`${fruitCounter}`, canvas.width / 2, 10);
-  pop();
   
   if (!started) {
     startButton.show();
@@ -97,6 +93,7 @@ function draw() {
   // Remove fruits that are marked for removal
   for (let i = fruitsToRemove.length - 1; i >= 0; i--) {
     fruits.splice(fruitsToRemove[i], 1);
+    fruitsToRemove.splice(i, 1);
   }
 
   // Draw all active knife swipes
@@ -107,10 +104,9 @@ function draw() {
     line(swipe.startX, swipe.startY, swipe.endX, swipe.endY);
 
     // Update swipe opacity and remove if necessary
-    swipe.opacity -= 10;
+    swipe.opacity--;
     if (swipe.opacity <= 0) {
       knifeSwipes.splice(i, 1);
-      i--;
     }
   }
 }
@@ -122,7 +118,7 @@ function mouseDragged() {
     startY: pmouseY,
     endX: mouseX,
     endY: mouseY,
-    opacity: 255
+    opacity: 25
   });
 }
 
