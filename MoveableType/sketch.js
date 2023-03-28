@@ -13,6 +13,11 @@ function setup() {
 
 function draw() {
   background(220);
+  let hours = hour();
+  let minutes = minute();
+  let seconds = second();
+
+  randomSeed(seconds);
 
   for(let i = 10; i < width; i += 20){
     for(let j = 10; j < height; j += 20){
@@ -25,9 +30,6 @@ function draw() {
     }
   }
 
-  let hours = hour();
-  let minutes = minute();
-  let seconds = second();
   timeText = nf(hours, 2) + ":" + nf(minutes, 2) + ":" + nf(seconds, 2);
 
   let tWidth = textWidth(timeText);
