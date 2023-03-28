@@ -30,7 +30,12 @@ function draw(){
         pixelsToRemove.push(i);
         decimate(pixel);
     }
-    else {
+  }
+  
+  // Draw only the pixels that are not in the pixelsToRemove array
+  for(let i = 0; i < pixelarr.length; i++){   
+    if (!pixelsToRemove.includes(i)) {
+      let pixel = pixelarr[i];
       fill(pixel.colour);
       noStroke();
       square(pixel.x, pixel.y, pixel.size);
