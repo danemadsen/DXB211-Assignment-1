@@ -4,11 +4,12 @@ let pixelsToRemove = [];
 let pixelsize = 64;
 
 function preload(){
-	img = loadImage("image.jpg");
+	img = loadImage("image.png");
 }
 
 function setup(){
   createCanvas(512, 512);
+  strokeWeight(10);
   for(let i = 0; i < width; i += pixelsize){
     for(let j = 0; j < height; j += pixelsize){
       pixelarr.push({
@@ -24,31 +25,25 @@ function setup(){
 function draw(){
   for(let i = 0; i < pixelarr.length; i++){   
     let pixel = pixelarr[i];
-    if (mouseIsPressed && pixel.size > 4 &&
+    if (mouseIsPressed && pixel.size > 2 &&
       (dist(pixel.x + (pixel.size / 2), pixel.y + (pixel.size / 2), pmouseX, pmouseY) < pixel.size / 2 || 
       dist(pixel.x + (pixel.size / 2), pixel.y + (pixel.size / 2), mouseX, mouseY) < pixel.size / 2)){
-        pixelsToRemove.push(i);
         decimate(pixel);
     }
-  }
-  
-  // Draw only the pixels that are not in the pixelsToRemove array
-  for(let i = 0; i < pixelarr.length; i++){   
-    if (!pixelsToRemove.includes(i)) {
-      let pixel = pixelarr[i];
+    else {
       fill(pixel.colour);
       noStroke();
       square(pixel.x, pixel.y, pixel.size);
     }
   }
-
-  for(let i = 0; i < pixelsToRemove.length; i++){
-    pixelarr.splice(pixelsToRemove[i], 1);
-  }
-  pixelsToRemove = [];
 }
 
 function decimate(pixel){
+  let index = pixelarr.indexOf(pixel);
+  if (index > -1) {
+    pixelarr.splice(index, 1);
+  }
+
   pixelarr.push({
     x: pixel.x,           
     y: pixel.y,
