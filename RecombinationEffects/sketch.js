@@ -28,7 +28,7 @@ function draw(){
     if (mouseIsPressed && pixel.size > 2 &&
       (dist(pixel.x + (pixel.size / 2), pixel.y + (pixel.size / 2), pmouseX, pmouseY) < pixel.size / 2 || 
       dist(pixel.x + (pixel.size / 2), pixel.y + (pixel.size / 2), mouseX, mouseY) < pixel.size / 2)){
-        decimate(pixel);
+        subdivide(pixel);
     }
     else {
       fill(pixel.colour);
@@ -38,7 +38,7 @@ function draw(){
   }
 }
 
-function decimate(pixel){
+function subdivide(pixel){
   let index = pixelarr.indexOf(pixel);
   if (index > -1) {
     pixelarr.splice(index, 1);
