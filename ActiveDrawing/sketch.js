@@ -6,9 +6,9 @@ let started = false; // Flag for whether the game has started
 let startButton;
 let counter;
 let fruitCounter = 0;
-const canvas = createCanvas(1000, 1000);
 
 function setup() {
+  const canvas = createCanvas(1000, 1000);
   startButton = createButton('Start');
   startButton.size(100, 50);
   startButton.position(canvas.width / 2 - startButton.width / 2, canvas.height / 2 - startButton.height / 2);
