@@ -10,6 +10,7 @@ function preload(){
 function setup(){
   createCanvas(512, 512);
   strokeWeight(10);
+  // Load the image into the pixel array
   for(let i = 0; i < width; i += pixelsize){
     for(let j = 0; j < height; j += pixelsize){
       pixelarr.push({
@@ -25,6 +26,7 @@ function setup(){
 function draw(){
   for(let i = 0; i < pixelarr.length; i++){   
     let pixel = pixelarr[i];
+    // If the mouse is pressed and the pixel is big enough, subdivide it
     if (mouseIsPressed && pixel.size > 2 &&
       (dist(pixel.x + (pixel.size / 2), pixel.y + (pixel.size / 2), pmouseX, pmouseY) < pixel.size / 2 || 
       dist(pixel.x + (pixel.size / 2), pixel.y + (pixel.size / 2), mouseX, mouseY) < pixel.size / 2)){
@@ -38,12 +40,16 @@ function draw(){
   }
 }
 
+// Function to subdivide a pixel into 4 smaller pixels
 function subdivide(pixel){
   let index = pixelarr.indexOf(pixel);
+  
+  // Remove the pixel from the array
   if (index > -1) {
     pixelarr.splice(index, 1);
   }
 
+  // Add the 4 new pixels to the array
   pixelarr.push({
     x: pixel.x,           
     y: pixel.y,
